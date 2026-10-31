@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "TS 학습 도우미",
+  "version": "1.6.1",
+  "description": "한국교통안전공단 교육 영상 페이지의 재생, 완료 요청 및 다음 차시 이동 도우미",
+  "minimum_chrome_version": "119",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "TS 학습 도우미"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://edu.kotsa.or.kr/*"
+      ],
+      "js": [
+        "bridge.js"
+      ],
+      "all_frames": true,
+      "match_about_blank": true,
+      "world": "MAIN",
+      "run_at": "document_idle",
+      "match_origin_as_fallback": true
+    },
+    {
+      "matches": [
+        "https://edu.kotsa.or.kr/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "all_frames": true,
+      "match_about_blank": true,
+      "run_at": "document_idle",
+      "match_origin_as_fallback": true
+    }
+  ],
+  "permissions": [
+    "scripting",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "https://edu.kotsa.or.kr/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
